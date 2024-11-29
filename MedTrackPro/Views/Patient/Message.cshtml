@@ -1,0 +1,69 @@
+﻿@model DataLibrary.ViewModels.Patient.MessageViewModel
+
+@{
+    var userId = Model.contact.Id;
+    var senderName = User.Identity.Name;
+}
+
+<div class="container shadow-lg min-vh-100 mt-2 rounded-2 p-4">
+    <div class="row position-relative">
+        <div class="col-md-12">
+            <div class="d-flex gap-4">
+                <input class="form-control rounded-1" id="msg" type="text" placeholder="Enter message" />
+                <input id="receiverId" value="@userId" hidden />
+                <input id="senderName" value="@senderName" hidden />
+                <button class="btn btn-info rounded-1" id="send-btn">Send</button>
+            </div>
+        </div>
+    </div>
+    <div id="messages" class="min-vh-100">
+        @if(Model.messages != null && Model.messages.Any())
+        {
+            foreach(var message in Model.messages)
+            {
+                @if(message.ReceiverId == userId)
+                {
+                    <div class="row">
+                        <div class="offset-sm-6 col-sm-6 col-md-6 text-start">
+                            <div class="card rounded-2 mt-3 p-2 bg-secondary text-white shadow-sm">
+                                <span class="">@message.Text</span>
+                            </div>
+                        </div>
+
+                    </div>
+                }
+                else
+                {
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 text-start">
+                            <div class="card rounded-2 mt-3 p-2 bg-primary text-white shadow-sm">
+                                <span class="">@message.Text</span>
+                            </div>
+                        </div>
+
+                    </div>
+                }
+            }
+        }
+        @*  <div class="row">
+            <div class="col-sm-6 col-md-6 text-start">
+                <div class="card rounded-2 mt-3 p-2 bg-primary text-white shadow-sm">
+                    <span class="">Hello, Mike! Whats up!</span>
+                </div>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="offset-sm-6 col-sm-6 col-md-6 text-start">
+                <div class="card rounded-2 mt-3 p-2 bg-secondary text-white shadow-sm">
+                    <span class="">Hello, Joe! I`m Fine!</span>
+                </div>
+            </div>
+
+        </div> *@
+    </div>
+</div>
+
+
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/signalr.js"></script>

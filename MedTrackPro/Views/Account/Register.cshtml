@@ -1,0 +1,32 @@
+﻿@model DataLibrary.ViewModels.Account.RegisterViewModel
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 mt-5">
+            <div class="text-center">
+                <h1>Register As a User</h1>
+            </div>
+            <form method="post" asp-action="Register" asp-controller="Account">
+                <div class="mt-2">
+                    <label asp-for="Email" class="form-label">Email</label>
+                    <input asp-for="Email" class="form-control rounded-2" placeholder="Email" type="text" />
+                </div>
+                <div class="mt-2">
+                    <label asp-for="Password" class="form-label">Password</label>
+                    <input asp-for ="Password" class="form-control rounded-2" placeholder="Password" type="password" />
+                </div>
+                <div class="mt-2">
+                    <label asp-for="ConfirmPassword" class="form-label">Confirm Password</label>
+                    <input asp-for="ConfirmPassword" class="form-control rounded-2" placeholder="Confirm Password" type="password" />
+                </div>
+                <div class="d-flex align-items-center mt-2">
+                    <input asp-for="AcceptTermsAndConditions" class="rounded-2" type="checkbox" />
+                    <label class="">Agree to Our <a asp-action="TermsAndCondition">terms and conditions</a></label>
+                </div>
+                <div class="mt-2">
+                    <button type="submit" class="btn btn-primary rounded-2">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

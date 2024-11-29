@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35208.52
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedTrackPro", "MedTrackPro\MedTrackPro.csproj", "{9ED45279-0822-4E5C-8B81-173CBA5BBD60}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLibrary", "DataLibrary\DataLibrary.csproj", "{5C563820-0F77-4410-8CD6-515003E5EF53}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9ED45279-0822-4E5C-8B81-173CBA5BBD60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9ED45279-0822-4E5C-8B81-173CBA5BBD60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9ED45279-0822-4E5C-8B81-173CBA5BBD60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9ED45279-0822-4E5C-8B81-173CBA5BBD60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C563820-0F77-4410-8CD6-515003E5EF53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C563820-0F77-4410-8CD6-515003E5EF53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C563820-0F77-4410-8CD6-515003E5EF53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C563820-0F77-4410-8CD6-515003E5EF53}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9ED17CA4-80DF-4973-9922-02D2FE1603DF}
+	EndGlobalSection
+EndGlobal

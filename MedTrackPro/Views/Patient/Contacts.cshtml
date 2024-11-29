@@ -1,0 +1,24 @@
+﻿@model IEnumerable<DataLibrary.Models.Patient.Contact>
+
+@{
+
+}
+
+<div class="container shadow-lg min-vh-100 mt-2 rounded-2 p-4">
+    <div class="row">
+        @if(Model != null && Model.Any())
+        {
+            foreach(var contact in Model)
+            {
+                <a asp-action="Message" asp-route-id="@contact.Id" class="text-decoration-none">
+                    <div class="card mt-2 rounded-2 col-md-12">
+                        <div class="card-header">
+                            @contact.Name
+                        </div>
+                    </div>
+                </a>
+            }
+        }
+
+    </div>
+</div>
