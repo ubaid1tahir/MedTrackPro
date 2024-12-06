@@ -4,25 +4,96 @@
     <div class="row justify-content-center">
         <div class="col-md-6 mt-5">
             <div class="text-center">
-                <h1>Register As a User</h1>
+                <h1>Register As a Patient</h1>
             </div>
-            <form method="post" asp-action="Register" asp-controller="Account">
-                <div class="mt-2">
+            <form class="row g-3" method="post" asp-action="Register" asp-controller="Account">
+                <div class="col-md-6">
+                    <label asp-for="FirstName" class="form-label">FirstName</label>
+                    <input asp-for="FirstName" type="text" class="form-control" required />
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="LastName" class="form-label">LastName</label>
+                    <input asp-for="LastName" type="text" class="form-control" required />
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="GuardenerName" class="form-label">Father Name</label>
+                    <input asp-for="GuardenerName" type="text" class="form-control" required />
+                </div>
+                <div class="mt-2 col-md-6">
                     <label asp-for="Email" class="form-label">Email</label>
-                    <input asp-for="Email" class="form-control rounded-2" placeholder="Email" type="text" />
+                    <input asp-for="Email" class="form-control rounded-2" placeholder="Email" type="text" required />
                 </div>
-                <div class="mt-2">
+                <div class="mt-2 col-md-6">
                     <label asp-for="Password" class="form-label">Password</label>
-                    <input asp-for ="Password" class="form-control rounded-2" placeholder="Password" type="password" />
+                    <input asp-for="Password" class="form-control rounded-2" placeholder="Password" type="password" required />
                 </div>
-                <div class="mt-2">
+                <div class="mt-2 col-md-6">
                     <label asp-for="ConfirmPassword" class="form-label">Confirm Password</label>
-                    <input asp-for="ConfirmPassword" class="form-control rounded-2" placeholder="Confirm Password" type="password" />
+                    <input asp-for="ConfirmPassword" class="form-control rounded-2" placeholder="Confirm Password" required type="password" />
                 </div>
+                <div class="col-md-12">
+                    <label asp-for="Address" class="form-label">Address</label>
+                    <input asp-for="Address" type="text" class="form-control rounded-2" required placeholder="Gullberg Town 234">
+                </div>
+                <div class="col-md-8">
+                    <label asp-for="PhoneNumber" class="form-label">Phone Number</label>
+                    <input asp-for="PhoneNumber" type="text" class="form-control rounded-2" required placeholder="+92 300 0333028">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Married</label>
+                    <select required id="inputState" class="form-select rounded-2">
+                        <option selected>Choose...</option>
+                        <option>Yes</option>
+                        <option>Not yet</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="Severity" class="form-label"></label>
+                    <input asp-for="Severity" required type="number" min="0" max="10" class="form-control rounded-2">
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Gender</label>
+                    <select required id="inputState" class="form-select rounded-2">
+                        <option selected>Choose...</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label asp-for="Age" class="form-label">Age</label>
+                    <input required asp-for="Age" type="text" class="form-control rounded-2" placeholder="24">
+                </div>
+
+                <div class="col-md-12">
+                    <label for="textareanote" asp-for="AdditionalNote" class="form-label">Additional Note</label>
+                    <textarea asp-for="AdditionalNote" class="form-control rounded-2" placeholder="Enter additional note" id="textareanote"></textarea>
+                </div>
+                
                 <div class="d-flex align-items-center mt-2">
-                    <input asp-for="AcceptTermsAndConditions" class="rounded-2" type="checkbox" />
-                    <label class="">Agree to Our <a asp-action="TermsAndCondition">terms and conditions</a></label>
+                    <input asp-for="AcceptTermsAndConditions" id="acceptfor" class="rounded-2" type="checkbox" />
+                    <label for="acceptfor" style="margin-left:4px;">Agree to Our <a asp-action="TermsAndCondition">terms and conditions</a></label>
                 </div>
+
+                <dnt-captcha asp-captcha-generator-max="30"
+                             asp-captcha-generator-min="1"
+                             asp-captcha-generator-language="English"
+                             asp-captcha-generator-display-mode="NumberToWord"
+                             asp-use-relative-urls="true"
+                             asp-placeholder="Security code as a number"
+                             asp-validation-error-message="Please enter the security code as a number."
+                             asp-too-many-requests-error-message="Too many requests! Please wait a minute!"
+                             asp-font-name="Tahoma"
+                             asp-font-size="20"
+                             asp-fore-color="#333333"
+                             asp-back-color="#FCF6F5FF"
+                             asp-text-box-class="form-control"
+                             asp-text-box-template="<div class='input-group'><span class='input-group-text'><span class='bi-lock'></span></span>{0}</div>"
+                             asp-validation-message-class="text-danger"
+                             asp-refresh-button-class="bi-arrow-counterclockwise btn-lg"
+                             asp-show-refresh-button="true"
+                             asp-dir="ltr" />
                 <div class="mt-2">
                     <button type="submit" class="btn btn-primary rounded-2">Register</button>
                 </div>

@@ -8,10 +8,13 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
+    <Folder Include="UtilityMethods\Interfaces\" />
+    <Folder Include="UtilityMethods\Implementations\" />
     <Folder Include="wwwroot\lib\bootstrap\dist\css\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="DNTCaptcha.Core" Version="5.2.8" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.11" />

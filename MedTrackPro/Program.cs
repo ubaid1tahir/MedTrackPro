@@ -4,7 +4,11 @@ using MedTrackPro.Hubs;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using DNTCaptcha.Core;
+using MedTrackPro.UtilityMethods;
 
+
+//https://www.youtube.com/watch?v=ScaOFvMn3Ek
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -25,6 +29,15 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
     .AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
 builder.Services.AddSignalR();
+
+builder.Services.AddDNTCaptcha(options =>
+{
+    options.UseCookieStorageProvider(SameSiteMode.Strict);
+    options.EncryptionKey = "F2022266205d2@m2EfjIV7t@LZb";
+});
+
+builder.Services.AddScoped<UtilsMethods>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -47,5 +60,12 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapHub<ClientHub>("/hub/client");
+
+using(var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var utilsMethod = services.GetRequiredService<UtilsMethods>();
+    await utilsMethod.CreateRolesAndAdminAsync();
+}
 
 app.Run();

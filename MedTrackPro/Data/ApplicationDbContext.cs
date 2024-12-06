@@ -1,4 +1,5 @@
-﻿using DataLibrary.Models.Patient;
+﻿using DataLibrary.Models.Doctor;
+using DataLibrary.Models.Patient;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,12 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
 
     public DbSet<Message> Messages { get; set; }
 
+    public DbSet<PatientModel> Patients { get; set; }
+
+    public DbSet<DoctorCategory> DoctorCategories { get; set; }
+
+    public DbSet<Doctor> Doctors { get; set; }
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -29,6 +36,18 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
             .HasOne(m => m.Sender)
             .WithMany()
             .HasForeignKey(m => m.SenderId)
+            .OnDelete(DeleteBehavior.NoAction);
+
+        builder.Entity<PatientModel>()
+            .HasOne(p => p.User)
+            .WithOne()
+            .HasForeignKey<PatientModel>(m => m.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        builder.Entity<Doctor>()
+            .HasOne(d => d.DoctorCategory)
+            .WithOne()
+            .HasForeignKey<Doctor>(d => d.CategoryId)
             .OnDelete(DeleteBehavior.NoAction);
     }
 }
