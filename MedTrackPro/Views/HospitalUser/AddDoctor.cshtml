@@ -1,0 +1,86 @@
+﻿@model DataLibrary.ViewModels.Doctor.DoctorViewModel
+
+@{
+    ViewData["Title"] = "Add Doctor";
+}
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 mt-5">
+            <div class="text-center">
+                <h1>Register New Doctor</h1>
+            </div>
+            <form id="doctorForm" class="row g-3" method="post" asp-action="AddDoctor" asp-controller="HospitalUser">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="col-md-6">
+                    <label asp-for="FirstName" class="form-label">FirstName</label>
+                    <input asp-for="FirstName" type="text" class="form-control" required />
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="LastName" class="form-label">LastName</label>
+                    <input asp-for="LastName" type="text" class="form-control" required />
+                </div>
+                <div class="col-md-12">
+                    <label asp-for="EmailAddress" class="form-label">Email Address</label>
+                    <input asp-for="EmailAddress" type="email" class="form-control" required />
+                </div>
+                <div class="mt-2 col-md-4">
+                    <label asp-for="Password" class="form-label">Password</label>
+                    <input asp-for="Password" class="form-control rounded-2" placeholder="Password" type="password" required />
+                </div>
+
+                <div class="col-md-8">
+                    <label asp-for="LicenseNumber" class="form-label">License Number</label>
+                    <input asp-for="LicenseNumber" type="text" class="form-control rounded-2" required placeholder="09403409394">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Category</label>
+                    <select asp-for="Category" required id="inputState" class="form-select rounded-2">
+                        <option selected>Choose...</option>
+                        @if(Model.DoctorCategories != null && Model.DoctorCategories.Any())
+                        {
+                            foreach(var category in Model.DoctorCategories)
+                            {
+                                <option value="@category.Name">@category.Name</option>
+                            }
+                        }
+                       
+                    </select>
+                </div>
+
+
+                <div class="col-md-4">
+                    <label class="form-label">Rank</label>
+                    <select asp-for="Rank" required id="inputState" class="form-select rounded-2">
+                        <option selected>Choose...</option>
+                        <option value="Senior">Senior</option>
+                        <option value="Junior">Junior</option>
+                        <option value="New Joinee">New Joinee</option>
+                        <option value="Internee">Internee</option>
+                    </select>
+                </div>
+                
+                
+                <div class="col-md-4">
+                    <label class="form-label">Status</label>
+                    <select asp-for="Status" required id="inputState" class="form-select rounded-2">
+                        <option value="Active">Active</option>
+                        <option value="InActive">InActive</option>
+                    </select>
+                </div>
+
+                
+                <div class="mt-2">
+                    <button type="submit" class="btn btn-primary rounded-2">Register</button>
+                </div>
+            </form>
+            <div class="mt-2 col-md-12">
+                <input id="categoryName" class="form-control rounded-2" placeholder="Add New Category" type="text" />
+                <button type="button" class="btn btn-danger rounded-2 mt-2" id="addCategoryBtn">Add New Category</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/addcategory.js"></script>

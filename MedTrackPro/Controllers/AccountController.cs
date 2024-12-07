@@ -106,6 +106,9 @@ public class AccountController : Controller
         return View(model);
     }
 
+
+
+
     [HttpPost]
     // Logout
     public async Task<IActionResult> Logout()

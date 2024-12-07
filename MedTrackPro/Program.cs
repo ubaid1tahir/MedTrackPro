@@ -6,6 +6,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using DNTCaptcha.Core;
 using MedTrackPro.UtilityMethods;
+using Microsoft.Extensions.DependencyInjection;
+using MedTrackPro.UtilityMethods.Implementations;
+using MedTrackPro.UtilityMethods.Interfaces;
+using MedTrackPro.UtilityMethods.UtilModels;
 
 
 //https://www.youtube.com/watch?v=ScaOFvMn3Ek
@@ -37,6 +41,9 @@ builder.Services.AddDNTCaptcha(options =>
 });
 
 builder.Services.AddScoped<UtilsMethods>();
+
+builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
+builder.Services.AddTransient<IEmailSender, EmailSender>();
 
 var app = builder.Build();
 

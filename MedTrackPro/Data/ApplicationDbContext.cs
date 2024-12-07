@@ -46,8 +46,8 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
 
         builder.Entity<Doctor>()
             .HasOne(d => d.DoctorCategory)
-            .WithOne()
-            .HasForeignKey<Doctor>(d => d.CategoryId)
+            .WithMany(c => c.Doctors)
+            .HasForeignKey(d => d.CategoryId)
             .OnDelete(DeleteBehavior.NoAction);
     }
 }

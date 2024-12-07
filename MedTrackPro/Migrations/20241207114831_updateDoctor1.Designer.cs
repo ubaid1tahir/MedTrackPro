@@ -4,6 +4,7 @@ using MedTrackPro.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedTrackPro.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241207114831_updateDoctor1")]
+    partial class updateDoctor1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,7 +93,8 @@ namespace MedTrackPro.Migrations
 
                     b.HasKey("DoctorId");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("CategoryId")
+                        .IsUnique();
 
                     b.HasIndex("UserId");
 
@@ -408,8 +412,8 @@ namespace MedTrackPro.Migrations
             modelBuilder.Entity("DataLibrary.Models.Doctor.Doctor", b =>
                 {
                     b.HasOne("DataLibrary.Models.Doctor.DoctorCategory", "DoctorCategory")
-                        .WithMany("Doctors")
-                        .HasForeignKey("CategoryId")
+                        .WithOne()
+                        .HasForeignKey("DataLibrary.Models.Doctor.Doctor", "CategoryId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
@@ -501,11 +505,6 @@ namespace MedTrackPro.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("DataLibrary.Models.Doctor.DoctorCategory", b =>
-                {
-                    b.Navigation("Doctors");
                 });
 #pragma warning restore 612, 618
         }
