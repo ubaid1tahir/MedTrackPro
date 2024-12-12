@@ -11,7 +11,7 @@ public class IdentityMethods
                 <table align='center' cellpadding='0' cellspacing='0' width='600' style='border-collapse: collapse; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);'>
                     <tr>
                         <td align='center' style='padding: 0;'>
-                            <img src='https://clipplytest.com/welcome.jpg' alt='Welcome to MedTrackPro' style='display: block; width: 100%; max-width: 600px; background-color: #673ab7;'>
+                            <img src='http://localhost:5188/images/Banner.jpg' alt='Welcome to MedTrackPro' style='display: block; width: 100%; max-width: 600px; background-color: #673ab7;'>
                         </td>
                     </tr>
                     <tr>
@@ -58,7 +58,7 @@ public class IdentityMethods
             <table align='center' cellpadding='0' cellspacing='0' width='600' style='border-collapse: collapse; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);'>
                 <tr>
                     <td align='center' style='padding: 0;'>
-                        <img src='https://clipplytest.com/email.jpg' alt='Welcome to MedTrackPro' style='display: block; width: 100%; max-width: 600px; background-color: #673ab7;'>
+                        <img src='http://localhost:5188/images/Banner.jpg' alt='Welcome to MedTrackPro' style='display: block; width: 100%; max-width: 600px; background-color: #673ab7;'>
                     </td>
                 </tr>
                 <tr>

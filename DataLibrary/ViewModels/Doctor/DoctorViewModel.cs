@@ -1,6 +1,7 @@
 ﻿
 using DataLibrary.Models.Doctor;
 using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 
 
 namespace DataLibrary.ViewModels.Doctor;
@@ -18,6 +19,7 @@ public class DoctorViewModel
 
     public string? Qualifications { get; set; }
     public IFormFile? Photo { get; set; }
+    public string? PhotoUrl {  get; set; }
     public string? LongDescription { get; set; }
 
     public string? ShortDescription { get; set; }
@@ -37,6 +39,16 @@ public class DoctorViewModel
     public string Password {  get; set; }
 
     public string Category {  get; set; }
-
+    // To add a doctor, we display categories and we use the below field
     public List<DoctorCategory> DoctorCategories { get; set; } = new List<DoctorCategory>();
+}
+
+
+
+public class DoctorCategoryViewModel
+{
+    public int CategoryId { get; set; }
+
+    public string Name { get; set; }
+    public string Description { get; set; }
 }

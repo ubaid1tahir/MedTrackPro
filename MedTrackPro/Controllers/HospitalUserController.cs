@@ -1,5 +1,6 @@
 ﻿using DataLibrary.Models.Doctor;
 using DataLibrary.ViewModels.Doctor;
+using DataLibrary.ViewModels.Patient;
 using MedTrackPro.Data;
 using MedTrackPro.UtilityMethods;
 using MedTrackPro.UtilityMethods.Interfaces;
