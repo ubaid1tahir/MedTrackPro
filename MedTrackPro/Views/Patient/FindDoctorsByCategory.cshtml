@@ -4,9 +4,27 @@
     <div class="row min-vh-100 mt-2">
         <div class="col-md-12 min-vh-100 overflow-y-auto border border-1 rounded-1 py-md-5 py-3" style="max-height: 450px;">
             <div class="col-md-4">
-                <select class="form-select rounded-2">
-                    <option>Surgeon</option>
-                    <option selected>BioTechnologist</option>
+                <select class="form-select rounded-2" onchange="location = this.value;">
+                    @if(Model.doctorCategories != null && Model.doctorCategories.Any())
+                    {
+                        foreach(var category in Model.doctorCategories)
+                        {
+                            if(category.isActive == true)
+                            {
+
+                                <option value="@Url.Action("FindDoctorsByCategory", "Patient", new { id = @category.CategoryId })" selected>@category.Name</option>
+                                
+                            }
+                            else
+                            {
+
+                                <option value="@Url.Action("FindDoctorsByCategory", "Patient", new { id = @category.CategoryId })">@category.Name</option>
+                                
+                            }
+                        }
+                    }
+                     
+                   
                 </select>
             </div>
             <div class="">

@@ -1,6 +1,8 @@
-﻿using DataLibrary.ViewModels.Doctor;
+﻿using DataLibrary.Models.DoctorNamespace;
+using DataLibrary.ViewModels.Doctor;
 using MedTrackPro.Data;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace MedTrackPro.Controllers;
 
@@ -37,5 +39,28 @@ public class DoctorController : Controller
             return View(viewModel);
         }
         return RedirectToAction("NotFound", "Error");
+    }
+    [HttpGet]
+    public IActionResult CompleteProfile()
+    {
+        var viewModel = new DoctorViewModel();
+        return View(viewModel);
+    }
+
+    [HttpPost]
+    public IActionResult CompleteProfile(DoctorViewModel model)
+    {
+        var doctorId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        var doctor = new Doctor()
+        {
+            LongDescription = model?.LongDescription,
+            ShortDescription = model?.ShortDescription,
+            YearsOfExperience = model?.YearsOfExperience,
+            EmergencyContact = model?.EmergencyContact,
+            PhoneNumber = model?.PhoneNumber,
+            WorkingHours = model?.WorkingHours
+        };
+
+        return View();
     }
 }

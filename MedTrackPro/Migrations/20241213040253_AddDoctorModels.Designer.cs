@@ -4,6 +4,7 @@ using MedTrackPro.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedTrackPro.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241213040253_AddDoctorModels")]
+    partial class AddDoctorModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +25,7 @@ namespace MedTrackPro.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("DataLibrary.Models.DoctorNamespace.Award", b =>
+            modelBuilder.Entity("DataLibrary.Models.Doctor.Award", b =>
                 {
                     b.Property<int>("AwardId")
                         .ValueGeneratedOnAdd()
@@ -51,7 +54,7 @@ namespace MedTrackPro.Migrations
                     b.ToTable("Awards");
                 });
 
-            modelBuilder.Entity("DataLibrary.Models.DoctorNamespace.Doctor", b =>
+            modelBuilder.Entity("DataLibrary.Models.Doctor.Doctor", b =>
                 {
                     b.Property<int>("DoctorId")
                         .ValueGeneratedOnAdd()
@@ -151,7 +154,7 @@ namespace MedTrackPro.Migrations
                     b.ToTable("Doctors");
                 });
 
-            modelBuilder.Entity("DataLibrary.Models.DoctorNamespace.DoctorCategory", b =>
+            modelBuilder.Entity("DataLibrary.Models.Doctor.DoctorCategory", b =>
                 {
                     b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
@@ -172,7 +175,7 @@ namespace MedTrackPro.Migrations
                     b.ToTable("DoctorCategories");
                 });
 
-            modelBuilder.Entity("DataLibrary.Models.DoctorNamespace.DoctorCertification", b =>
+            modelBuilder.Entity("DataLibrary.Models.Doctor.DoctorCertification", b =>
                 {
                     b.Property<int>("CertificationId")
                         .ValueGeneratedOnAdd()
@@ -204,7 +207,7 @@ namespace MedTrackPro.Migrations
                     b.ToTable("DoctorCertifications");
                 });
 
-            modelBuilder.Entity("DataLibrary.Models.DoctorNamespace.DoctorExperience", b =>
+            modelBuilder.Entity("DataLibrary.Models.Doctor.DoctorExperience", b =>
                 {
                     b.Property<int>("ExperienceId")
                         .ValueGeneratedOnAdd()
@@ -240,7 +243,7 @@ namespace MedTrackPro.Migrations
                     b.ToTable("DoctorExperiences");
                 });
 
-            modelBuilder.Entity("DataLibrary.Models.DoctorNamespace.DoctorMembership", b =>
+            modelBuilder.Entity("DataLibrary.Models.Doctor.DoctorMembership", b =>
                 {
                     b.Property<int>("MembershipId")
                         .ValueGeneratedOnAdd()
@@ -272,7 +275,7 @@ namespace MedTrackPro.Migrations
                     b.ToTable("DoctorMemberships");
                 });
 
-            modelBuilder.Entity("DataLibrary.Models.DoctorNamespace.DoctorQualification", b =>
+            modelBuilder.Entity("DataLibrary.Models.Doctor.DoctorQualification", b =>
                 {
                     b.Property<int>("QualificationId")
                         .ValueGeneratedOnAdd()
@@ -303,203 +306,6 @@ namespace MedTrackPro.Migrations
                     b.HasIndex("DoctorId");
 
                     b.ToTable("DoctorQualifications");
-                });
-
-            modelBuilder.Entity("DataLibrary.Models.Patient.Appointment", b =>
-                {
-                    b.Property<int>("AppointmentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AppointmentId"));
-
-                    b.Property<DateOnly>("Date")
-                        .HasColumnType("date");
-
-                    b.Property<int>("DoctorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PatientId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Reason")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<TimeOnly>("Time")
-                        .HasColumnType("time");
-
-                    b.HasKey("AppointmentId");
-
-                    b.HasIndex("DoctorId");
-
-                    b.HasIndex("PatientId");
-
-                    b.ToTable("Appointments");
-                });
-
-            modelBuilder.Entity("DataLibrary.Models.Patient.Document", b =>
-                {
-                    b.Property<int>("DocumentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DocumentId"));
-
-                    b.Property<string>("DocumentType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FileUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PatientId")
-                        .HasColumnType("int");
-
-                    b.Property<DateOnly>("UploadDate")
-                        .HasColumnType("date");
-
-                    b.HasKey("DocumentId");
-
-                    b.HasIndex("PatientId");
-
-                    b.ToTable("Documents");
-                });
-
-            modelBuilder.Entity("DataLibrary.Models.Patient.Immunization", b =>
-                {
-                    b.Property<int>("ImmunizationId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ImmunizationId"));
-
-                    b.Property<DateOnly>("DateAdministered")
-                        .HasColumnType("date");
-
-                    b.Property<int>("PatientId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Provider")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("VaccineName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ImmunizationId");
-
-                    b.HasIndex("PatientId");
-
-                    b.ToTable("Immunizations");
-                });
-
-            modelBuilder.Entity("DataLibrary.Models.Patient.LabResult", b =>
-                {
-                    b.Property<int>("LabResultId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LabResultId"));
-
-                    b.Property<DateOnly>("Date")
-                        .HasColumnType("date");
-
-                    b.Property<string>("NormalRange")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Notes")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PatientId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Result")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TestName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Unit")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("LabResultId");
-
-                    b.HasIndex("PatientId");
-
-                    b.ToTable("LabResults");
-                });
-
-            modelBuilder.Entity("DataLibrary.Models.Patient.MedicalHistory", b =>
-                {
-                    b.Property<int>("HistoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HistoryId"));
-
-                    b.Property<DateOnly>("DiagnosisDate")
-                        .HasColumnType("date");
-
-                    b.Property<int>("PatientId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("HistoryId");
-
-                    b.HasIndex("PatientId");
-
-                    b.ToTable("MedicalHistories");
-                });
-
-            modelBuilder.Entity("DataLibrary.Models.Patient.Medication", b =>
-                {
-                    b.Property<int>("MedicationId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MedicationId"));
-
-                    b.Property<string>("Dosage")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateOnly>("EndDate")
-                        .HasColumnType("date");
-
-                    b.Property<string>("Frequency")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MedicationName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PatientId")
-                        .HasColumnType("int");
-
-                    b.Property<DateOnly>("StartDate")
-                        .HasColumnType("date");
-
-                    b.HasKey("MedicationId");
-
-                    b.HasIndex("PatientId");
-
-                    b.ToTable("Medications");
                 });
 
             modelBuilder.Entity("DataLibrary.Models.Patient.Message", b =>
@@ -534,37 +340,6 @@ namespace MedTrackPro.Migrations
                     b.ToTable("Messages");
                 });
 
-            modelBuilder.Entity("DataLibrary.Models.Patient.Note", b =>
-                {
-                    b.Property<int>("NoteId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NoteId"));
-
-                    b.Property<string>("AuthorId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateOnly>("DateAdded")
-                        .HasColumnType("date");
-
-                    b.Property<int>("PatientId")
-                        .HasColumnType("int");
-
-                    b.HasKey("NoteId");
-
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("PatientId");
-
-                    b.ToTable("Notes");
-                });
-
             modelBuilder.Entity("DataLibrary.Models.Patient.PatientModel", b =>
                 {
                     b.Property<int>("PatientId")
@@ -583,21 +358,6 @@ namespace MedTrackPro.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
-                    b.Property<string>("Allergies")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateOnly?>("BirthDate")
-                        .HasColumnType("date");
-
-                    b.Property<string>("EmergencyPhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EmergencyRelationName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EmergencyRelationship")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -614,9 +374,6 @@ namespace MedTrackPro.Migrations
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProfilePhoto")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Severity")
@@ -638,76 +395,6 @@ namespace MedTrackPro.Migrations
                         .IsUnique();
 
                     b.ToTable("Patients");
-                });
-
-            modelBuilder.Entity("DataLibrary.Models.Patient.Vaccination", b =>
-                {
-                    b.Property<int>("VaccinationId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VaccinationId"));
-
-                    b.Property<DateOnly>("DateAdministered")
-                        .HasColumnType("date");
-
-                    b.Property<string>("LotNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PatientId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Provider")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("VaccineName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("VaccinationId");
-
-                    b.HasIndex("PatientId");
-
-                    b.ToTable("Vaccinations");
-                });
-
-            modelBuilder.Entity("DataLibrary.Models.Patient.VitalSign", b =>
-                {
-                    b.Property<int>("VitalSignId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VitalSignId"));
-
-                    b.Property<string>("BloodPressure")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateOnly>("Date")
-                        .HasColumnType("date");
-
-                    b.Property<int>("HeartRate")
-                        .HasColumnType("int");
-
-                    b.Property<float>("OxygenSaturation")
-                        .HasColumnType("real");
-
-                    b.Property<int>("PatientId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RespiratoryRate")
-                        .HasColumnType("int");
-
-                    b.Property<float>("Temperature")
-                        .HasColumnType("real");
-
-                    b.HasKey("VitalSignId");
-
-                    b.HasIndex("PatientId");
-
-                    b.ToTable("VitalSigns");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -908,9 +595,9 @@ namespace MedTrackPro.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("DataLibrary.Models.DoctorNamespace.Award", b =>
+            modelBuilder.Entity("DataLibrary.Models.Doctor.Award", b =>
                 {
-                    b.HasOne("DataLibrary.Models.DoctorNamespace.Doctor", "Doctor")
+                    b.HasOne("DataLibrary.Models.Doctor.Doctor", "Doctor")
                         .WithMany()
                         .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -919,9 +606,9 @@ namespace MedTrackPro.Migrations
                     b.Navigation("Doctor");
                 });
 
-            modelBuilder.Entity("DataLibrary.Models.DoctorNamespace.Doctor", b =>
+            modelBuilder.Entity("DataLibrary.Models.Doctor.Doctor", b =>
                 {
-                    b.HasOne("DataLibrary.Models.DoctorNamespace.DoctorCategory", "DoctorCategory")
+                    b.HasOne("DataLibrary.Models.Doctor.DoctorCategory", "DoctorCategory")
                         .WithMany("Doctors")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -938,9 +625,9 @@ namespace MedTrackPro.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("DataLibrary.Models.DoctorNamespace.DoctorCertification", b =>
+            modelBuilder.Entity("DataLibrary.Models.Doctor.DoctorCertification", b =>
                 {
-                    b.HasOne("DataLibrary.Models.DoctorNamespace.Doctor", "Doctor")
+                    b.HasOne("DataLibrary.Models.Doctor.Doctor", "Doctor")
                         .WithMany()
                         .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -949,9 +636,9 @@ namespace MedTrackPro.Migrations
                     b.Navigation("Doctor");
                 });
 
-            modelBuilder.Entity("DataLibrary.Models.DoctorNamespace.DoctorExperience", b =>
+            modelBuilder.Entity("DataLibrary.Models.Doctor.DoctorExperience", b =>
                 {
-                    b.HasOne("DataLibrary.Models.DoctorNamespace.Doctor", "Doctor")
+                    b.HasOne("DataLibrary.Models.Doctor.Doctor", "Doctor")
                         .WithMany()
                         .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -960,9 +647,9 @@ namespace MedTrackPro.Migrations
                     b.Navigation("Doctor");
                 });
 
-            modelBuilder.Entity("DataLibrary.Models.DoctorNamespace.DoctorMembership", b =>
+            modelBuilder.Entity("DataLibrary.Models.Doctor.DoctorMembership", b =>
                 {
-                    b.HasOne("DataLibrary.Models.DoctorNamespace.Doctor", "Doctor")
+                    b.HasOne("DataLibrary.Models.Doctor.Doctor", "Doctor")
                         .WithMany()
                         .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -971,89 +658,15 @@ namespace MedTrackPro.Migrations
                     b.Navigation("Doctor");
                 });
 
-            modelBuilder.Entity("DataLibrary.Models.DoctorNamespace.DoctorQualification", b =>
+            modelBuilder.Entity("DataLibrary.Models.Doctor.DoctorQualification", b =>
                 {
-                    b.HasOne("DataLibrary.Models.DoctorNamespace.Doctor", "Doctor")
+                    b.HasOne("DataLibrary.Models.Doctor.Doctor", "Doctor")
                         .WithMany()
                         .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Doctor");
-                });
-
-            modelBuilder.Entity("DataLibrary.Models.Patient.Appointment", b =>
-                {
-                    b.HasOne("DataLibrary.Models.DoctorNamespace.Doctor", "Doctor")
-                        .WithMany()
-                        .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("DataLibrary.Models.Patient.PatientModel", "Patient")
-                        .WithMany()
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Doctor");
-
-                    b.Navigation("Patient");
-                });
-
-            modelBuilder.Entity("DataLibrary.Models.Patient.Document", b =>
-                {
-                    b.HasOne("DataLibrary.Models.Patient.PatientModel", "Patient")
-                        .WithMany()
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Patient");
-                });
-
-            modelBuilder.Entity("DataLibrary.Models.Patient.Immunization", b =>
-                {
-                    b.HasOne("DataLibrary.Models.Patient.PatientModel", "Patient")
-                        .WithMany()
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Patient");
-                });
-
-            modelBuilder.Entity("DataLibrary.Models.Patient.LabResult", b =>
-                {
-                    b.HasOne("DataLibrary.Models.Patient.PatientModel", "Patient")
-                        .WithMany()
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Patient");
-                });
-
-            modelBuilder.Entity("DataLibrary.Models.Patient.MedicalHistory", b =>
-                {
-                    b.HasOne("DataLibrary.Models.Patient.PatientModel", "Patient")
-                        .WithMany()
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Patient");
-                });
-
-            modelBuilder.Entity("DataLibrary.Models.Patient.Medication", b =>
-                {
-                    b.HasOne("DataLibrary.Models.Patient.PatientModel", "Patient")
-                        .WithMany()
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Patient");
                 });
 
             modelBuilder.Entity("DataLibrary.Models.Patient.Message", b =>
@@ -1075,25 +688,6 @@ namespace MedTrackPro.Migrations
                     b.Navigation("Sender");
                 });
 
-            modelBuilder.Entity("DataLibrary.Models.Patient.Note", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("DataLibrary.Models.Patient.PatientModel", "Patient")
-                        .WithMany()
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Author");
-
-                    b.Navigation("Patient");
-                });
-
             modelBuilder.Entity("DataLibrary.Models.Patient.PatientModel", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
@@ -1103,28 +697,6 @@ namespace MedTrackPro.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("DataLibrary.Models.Patient.Vaccination", b =>
-                {
-                    b.HasOne("DataLibrary.Models.Patient.PatientModel", "Patient")
-                        .WithMany()
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Patient");
-                });
-
-            modelBuilder.Entity("DataLibrary.Models.Patient.VitalSign", b =>
-                {
-                    b.HasOne("DataLibrary.Models.Patient.PatientModel", "Patient")
-                        .WithMany()
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Patient");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -1178,7 +750,7 @@ namespace MedTrackPro.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DataLibrary.Models.DoctorNamespace.DoctorCategory", b =>
+            modelBuilder.Entity("DataLibrary.Models.Doctor.DoctorCategory", b =>
                 {
                     b.Navigation("Doctors");
                 });

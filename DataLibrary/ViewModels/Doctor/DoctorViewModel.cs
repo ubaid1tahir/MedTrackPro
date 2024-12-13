@@ -1,5 +1,5 @@
 ﻿
-using DataLibrary.Models.Doctor;
+using DataLibrary.Models.DoctorNamespace;
 using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
@@ -51,4 +51,6 @@ public class DoctorCategoryViewModel
 
     public string Name { get; set; }
     public string Description { get; set; }
+
+    public bool? isActive { get; set; }
 }

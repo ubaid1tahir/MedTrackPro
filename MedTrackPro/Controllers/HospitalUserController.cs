@@ -1,6 +1,6 @@
-﻿using DataLibrary.Models.Doctor;
-using DataLibrary.ViewModels.Doctor;
+﻿using DataLibrary.ViewModels.Doctor;
 using DataLibrary.ViewModels.Patient;
+using DataLibrary.Models.DoctorNamespace;
 using MedTrackPro.Data;
 using MedTrackPro.UtilityMethods;
 using MedTrackPro.UtilityMethods.Interfaces;
@@ -99,7 +99,8 @@ public class HospitalUserController : Controller
                 LicenseNumber = model.LicenseNumber,
                 Status = model.Status,
                 Rank = model.Rank,
-                AddedById = adminId
+                AddedById = adminId,
+                UserId = doctorUser.Id
             };
             doctor.CategoryId = 
                 _context.DoctorCategories.Where(c => c.Name == model.Category).FirstOrDefault().CategoryId;

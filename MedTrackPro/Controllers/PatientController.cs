@@ -1,8 +1,9 @@
-﻿using DataLibrary.Models.Doctor;
-using DataLibrary.Models.Patient;
+﻿using DataLibrary.Models.Patient;
 using DataLibrary.ViewModels.Doctor;
 using DataLibrary.ViewModels.Patient;
 using MedTrackPro.Data;
+using MedTrackPro.UtilityMethods.Implementations;
+using MedTrackPro.UtilityMethods.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -16,11 +17,13 @@ public class PatientController : Controller
 {
     private readonly UserManager<IdentityUser> _userManager;
     private readonly ApplicationDbContext _context;
+    private readonly IFindDoctor _doctorService;
 
-    public PatientController(UserManager<IdentityUser> userManager, ApplicationDbContext context)
+    public PatientController(UserManager<IdentityUser> userManager, ApplicationDbContext context, IFindDoctor doctorService)
     {
         _userManager = userManager;
         _context = context;
+        _doctorService = doctorService;
     }
     public async Task<IActionResult> Message(string id)
     {
@@ -78,89 +81,13 @@ public class PatientController : Controller
 
     public IActionResult SelectDoctor()
     {
-        var doctors = _context.Doctors.FromSqlInterpolated($"exec dbo.spDoctor_GetAllDoctorsOnExperience")
-            .AsEnumerable().Select(doctor => new Doctor
-            {
-                DoctorId = doctor.DoctorId,
-                FirstName = doctor.FirstName,
-                LastName = doctor.LastName,
-                Rank = doctor?.Rank,
-                Status = doctor.Status,
-                ShortDescription = doctor?.ShortDescription,
-                YearsOfExperience = doctor?.YearsOfExperience,
-                Photo = doctor?.Photo
-            }).ToList();
-
-        var categories = _context.DoctorCategories.ToList();
-
-        var categoryViewModelList = new List<DoctorCategoryViewModel>();
-        foreach(var category in categories)
-        {
-            categoryViewModelList.Add(new DoctorCategoryViewModel
-            {
-                CategoryId = category.CategoryId,
-                Name = category.Name,
-                Description = category.Description,
-            });
-        }
-
-        var doctorViewModelList = new List<DoctorViewModel>();
-        foreach (var doctor in doctors)
-        {
-            doctorViewModelList.Add(new DoctorViewModel
-            {
-                DoctorId = doctor.DoctorId,
-                FirstName = doctor.FirstName,
-                LastName = doctor.LastName,
-                Rank = doctor?.Rank,
-                Status = doctor.Status,
-                ShortDescription = doctor?.ShortDescription,
-                YearsOfExperience = doctor?.YearsOfExperience,
-                PhotoUrl = doctor?.Photo
-            });
-        }
-        var viewModel = new SelectDoctorViewModel
-        {
-            doctorCategories = categoryViewModelList,
-            Doctors = doctorViewModelList
-        };
+        var viewModel = _doctorService.FindDoctors(_context);
         return View(viewModel);
     }
 
     public IActionResult FindDoctorsByCategory(int id)
     {
-        var doctors = _context.Doctors.FromSqlInterpolated($"exec dbo.spDoctor_GetByCategory @CategoryId={id}")
-            .AsEnumerable().Select(doctor => new Doctor
-            {
-                DoctorId = doctor.DoctorId,
-                FirstName = doctor.FirstName,
-                LastName = doctor.LastName,
-                Rank = doctor?.Rank,
-                Status = doctor.Status,
-                ShortDescription = doctor?.ShortDescription,
-                YearsOfExperience = doctor?.YearsOfExperience,
-                Photo = doctor?.Photo
-            }).ToList();
-
-        var doctorViewModelList = new List<DoctorViewModel>();
-        foreach (var doctor in doctors)
-        {
-            doctorViewModelList.Add(new DoctorViewModel
-            {
-                DoctorId = doctor.DoctorId,
-                FirstName = doctor.FirstName,
-                LastName = doctor.LastName,
-                Rank = doctor?.Rank,
-                Status = doctor.Status,
-                ShortDescription = doctor?.ShortDescription,
-                YearsOfExperience = doctor?.YearsOfExperience,
-                PhotoUrl = doctor?.Photo
-            });
-        }
-        var viewModel = new SelectDoctorViewModel
-        {
-            Doctors = doctorViewModelList
-        };
+        var viewModel = _doctorService.FindDoctors(_context, id);
         return View(viewModel);
     }
 }
