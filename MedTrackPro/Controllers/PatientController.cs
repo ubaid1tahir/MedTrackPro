@@ -17,9 +17,9 @@ public class PatientController : Controller
 {
     private readonly UserManager<IdentityUser> _userManager;
     private readonly ApplicationDbContext _context;
-    private readonly IFindDoctor _doctorService;
+    private readonly IDoctor _doctorService;
 
-    public PatientController(UserManager<IdentityUser> userManager, ApplicationDbContext context, IFindDoctor doctorService)
+    public PatientController(UserManager<IdentityUser> userManager, ApplicationDbContext context, IDoctor doctorService)
     {
         _userManager = userManager;
         _context = context;

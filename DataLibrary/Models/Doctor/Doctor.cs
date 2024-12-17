@@ -38,6 +38,8 @@ public class Doctor
 
     public string? WorkingHours { get; set; }
 
+    public string? WorkingDays { get; set; } // Mon - Thur 8:00 - 12:00 
+
     public string? DaysAvailable {  get; set; }
 
     public string? EmergencyContact { get; set; }

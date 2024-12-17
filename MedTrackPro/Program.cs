@@ -41,7 +41,7 @@ builder.Services.AddDNTCaptcha(options =>
 });
 
 builder.Services.AddScoped<UtilsMethods>();
-builder.Services.AddScoped<IFindDoctor, FindDoctor>();
+builder.Services.AddScoped<IDoctor, FindDoctor>();
 
 builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
 builder.Services.AddTransient<IEmailSender, EmailSender>();

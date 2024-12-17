@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using DataLibrary.Models.DoctorNamespace;
 namespace MedTrackPro.UtilityMethods.Implementations;
 
-public class FindDoctor : IFindDoctor
+public class FindDoctor : IDoctor
 {
     public SelectDoctorViewModel FindDoctors(ApplicationDbContext _context, int? id = 0)
     {
@@ -23,7 +23,15 @@ public class FindDoctor : IFindDoctor
                 Status = doctor.Status,
                 ShortDescription = doctor?.ShortDescription,
                 YearsOfExperience = doctor?.YearsOfExperience,
-                Photo = doctor?.Photo
+                Photo = doctor?.Photo,
+                LongDescription = doctor?.LongDescription,
+                EmergencyContact = doctor?.EmergencyContact,
+                PhoneNumber = doctor?.PhoneNumber,
+                WorkingHours = doctor?.WorkingHours,
+                DaysAvailable = doctor?.DaysAvailable,
+                WorkingDays = doctor?.WorkingDays,
+                Country = doctor?.Country,
+                UserId = doctor?.UserId
             }).ToList();
         }
         else
@@ -38,7 +46,15 @@ public class FindDoctor : IFindDoctor
                 Status = doctor.Status,
                 ShortDescription = doctor?.ShortDescription,
                 YearsOfExperience = doctor?.YearsOfExperience,
-                Photo = doctor?.Photo
+                Photo = doctor?.Photo,
+                LongDescription = doctor?.LongDescription,
+                EmergencyContact = doctor?.EmergencyContact,
+                PhoneNumber = doctor?.PhoneNumber,
+                WorkingHours = doctor?.WorkingHours,
+                DaysAvailable = doctor?.DaysAvailable,
+                WorkingDays = doctor?.WorkingDays,
+                Country = doctor?.Country,
+                UserId = doctor?.UserId
             }).ToList();
         }
         
@@ -55,7 +71,15 @@ public class FindDoctor : IFindDoctor
                 Status = doctor.Status,
                 ShortDescription = doctor?.ShortDescription,
                 YearsOfExperience = doctor?.YearsOfExperience,
-                PhotoUrl = doctor?.Photo
+                PhotoUrl = doctor?.Photo,
+                LongDescription = doctor?.LongDescription,
+                EmergencyContact = doctor?.EmergencyContact,
+                PhoneNumber = doctor?.PhoneNumber,
+                WorkingHours = doctor?.WorkingHours,
+                DaysAvailable = doctor?.DaysAvailable,
+                WorkingDays = doctor?.WorkingDays,
+                Country = doctor?.Country,
+                UserId = doctor?.UserId
             });
         }
         var categories = _context.DoctorCategories.ToList();

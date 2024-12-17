@@ -27,7 +27,7 @@
                 {
                     foreach (var doctor in Model.Doctors)
                     {
-                        <a asp-controller="Doctor" asp-action="Profile" asp-route-id="@doctor.DoctorId" class="text-decoration-none text-black" style="cursor:pointer;">
+                        <a asp-controller="Doctor" asp-action="Profile" asp-route-id="@doctor.UserId" class="text-decoration-none text-black" style="cursor:pointer;">
                             <div class="d-flex justify-content-start m-3 border border-1 rounded-2">
                                 @if (doctor.PhotoUrl == null)
                                 {

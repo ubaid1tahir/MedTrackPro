@@ -38,10 +38,89 @@ public class DoctorViewModel
 
     public string Password {  get; set; }
 
+    public string? LanguagesSpoken { get; set; }
+    public string? WorkingDays { get; set; } // Mon - Thur 8:00 - 12:00 
+
+    public string? DaysAvailable { get; set; }
+
+    public DateOnly? LicenseIssueDate { get; set; }
+
+    public DateOnly? LicenseExpiryDate { get; set; }
+
+    public string? UserId {  get; set; }
+
+    public string State { get; set; }
+
+    public string? Country {  get; set; }
+
+    public int? Reviews { get; set; }
     public string Category {  get; set; }
     // To add a doctor, we display categories and we use the below field
     public List<DoctorCategory> DoctorCategories { get; set; } = new List<DoctorCategory>();
 }
+
+
+public class DoctorQualificationViewModel
+{
+    public int QualificationId { get; set; }
+
+    public string Degree { get; set; }
+    public string Institute { get; set; }
+    public int YearOfCompletion { get; set; }
+    public string Country { get; set; }
+
+    public int DoctorId { get; set; }
+}
+
+public class DoctorExperienceViewModel
+{
+    public int ExperienceId { get; set; }
+    public string Hospital { get; set; }
+    public string Position { get; set; }
+    public DateOnly StartDate { get; set; }
+    public DateOnly? EndDate { get; set; }
+
+    public string Location { get; set; }
+
+    public int DoctorId { get; set; }
+}
+
+public class DoctorCertificationViewModel
+{
+    public int CertificationId { get; set; }
+    public string Name { get; set; }
+    public string Organization { get; set; }
+    public DateOnly IssueDate { get; set; }
+    public DateOnly? ExpiryDate { get; set; }
+
+    public int DoctorId { get; set; }
+}
+
+public class DoctorMembershipViewModel
+{
+    public int MembershipId { get; set; }
+    public string Role { get; set; }
+    public string Organization { get; set; }
+    public DateOnly StartDate { get; set; }
+    public DateOnly? EndDate { get; set; }
+
+    public int DoctorId { get; set; }
+}
+
+public class AwardViewModel
+{
+    public int AwardId { get; set; }
+
+    public string Title { get; set; }
+
+    public string Organization { get; set; }
+
+    public int Year { get; set; }
+
+    public int DoctorId { get; set; }
+}
+
+
 
 
 

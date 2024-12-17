@@ -3,7 +3,7 @@ using MedTrackPro.Data;
 
 namespace MedTrackPro.UtilityMethods.Interfaces;
 
-public interface IFindDoctor
+public interface IDoctor
 {
     SelectDoctorViewModel FindDoctors(ApplicationDbContext _context, int? id = 0);
 }

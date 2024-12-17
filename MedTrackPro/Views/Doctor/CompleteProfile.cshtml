@@ -1,0 +1,74 @@
+﻿@model DataLibrary.ViewModels.Doctor.DoctorViewModel
+
+@{
+
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 mt-5">
+            <div class="text-center">
+                <h1>Complete Profile</h1>
+            </div>
+            <form class="row g-3" method="post" asp-action="CompleteProfile" asp-controller="Doctor" enctype="multipart/form-data">
+                <div class="col-md-6">
+                    <label asp-for="FirstName" class="form-label">FirstName</label>
+                    <input asp-for="FirstName" type="text" class="form-control" required />
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="LastName" class="form-label">LastName</label>
+                    <input asp-for="LastName" type="text" class="form-control" required />
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="EmergencyContact" class="form-label">Emergency Contact#</label>
+                    <input asp-for="EmergencyContact" type="text" class="form-control" required />
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="State" class="form-label">State</label>
+                    <input asp-for="State" class="form-control rounded-2" placeholder="Massachusetts" type="text" required />
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Country" class="form-label">Country</label>
+                    <input asp-for="Country" class="form-control rounded-2" placeholder="USA" type="text" required />
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Password" class="form-label">New Password</label>
+                    <input asp-for="Password" class="form-control rounded-2" placeholder="Password" type="password" required />
+                </div>
+                
+                <div class="col-md-6">
+                    <label asp-for="PhoneNumber" class="form-label">Phone Number</label>
+                    <input asp-for="PhoneNumber" type="text" class="form-control rounded-2" required placeholder="+92 300 0333028">
+                </div>
+             
+                <div class="col-md-6">
+                    <label asp-for="YearsOfExperience" class="form-label">Years Of Experience</label>
+                    <input asp-for="YearsOfExperience" type="number" class="form-control rounded-2" required placeholder="3">
+                </div>
+
+
+                <div class="col-md-12">
+                    <label for="textareanote" asp-for="ShortDescription" class="form-label">Short Description</label>
+                    <textarea asp-for="ShortDescription" class="form-control rounded-2" placeholder="Enter short description" id="textareanote"></textarea>
+                </div>
+                
+                <div class="col-md-12">
+                    <label for="textareanote" asp-for="LongDescription" class="form-label">Long Description</label>
+                    <textarea asp-for="LongDescription" class="form-control rounded-2" placeholder="Enter long description" id="textareanote"></textarea>
+                </div>
+
+                
+
+                <div class="col-md-12">
+                    <label for="textareanote" asp-for="Photo" class="form-label">Profile Image</label>
+                    <input type="file" asp-for="Photo" value="PhotoUrl" class="form-control rounded-2" />
+                </div>
+
+
+                <div class="mt-2">
+                    <button type="submit" class="btn btn-primary rounded-2">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
